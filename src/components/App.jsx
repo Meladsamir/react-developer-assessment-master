@@ -31,7 +31,6 @@ export default function App() {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log('in it');
       await fetch('/api/posts')
         .then((res) => res.json())
         .then((json) => {
@@ -51,7 +50,6 @@ export default function App() {
         });
     };
     fetchData();
-    console.log('in effect');
     console.log(appState.selectedCategories);
   }, []);
 
@@ -155,11 +153,11 @@ export default function App() {
       <Grid className={classes.cardsContainer} container spacing={1}>
         <Grid container item xs={12} spacing={3}>
           {appState.shownPosts.slice(0, appState.pageLength).map((post, i) => (
-            <Grid key={post.id} item xs={12} sm={6} md={3}>
-              <Zoom style={{ transitionDelay: (i + 5) * 10 }} in={true}>
+            <Zoom key={post.id} style={{ transitionDelay: (i + 5) * 10 }} in={true}>
+              <Grid item xs={12} sm={6} md={3}>
                 <Card post={post} />
-              </Zoom>
-            </Grid>
+              </Grid>
+            </Zoom>
           ))}
         </Grid>
       </Grid>
